@@ -25,10 +25,4 @@ export class HomePage{
     async selectSort(value:string){
         await this.sortSelect.selectOption(value)
     }
-
-
-
-
-
-
 }
