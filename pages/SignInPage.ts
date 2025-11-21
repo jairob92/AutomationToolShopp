@@ -14,4 +14,19 @@ export class SignInPage {
         this.registerAccountLink=page.getByTestId('register-link')
     }
 
+    async typeEmail(email:string){
+       await this.emailInput.fill(email)
+    }
+    async typePasswor(password:string){
+       await this.passwordInput.fill(password)
+    }
+
+    async clickOnLoginButton(){
+       await this.LoginButton.click()
+    }
+
+    async clickOnRegisterAccountLink(){
+        await this.registerAccountLink.click()
+    }
+
 }
