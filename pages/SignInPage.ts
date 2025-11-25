@@ -1,0 +1,32 @@
+import { Locator, Page } from "@playwright/test";
+
+export class SignInPage {
+
+    private readonly emailInput:Locator
+    private readonly passwordInput:Locator
+    private readonly LoginButton:Locator
+    private readonly registerAccountLink:Locator
+
+    constructor(page:Page){
+        this.emailInput=page.getByTestId('email')
+        this.passwordInput=page.getByTestId('password')
+        this.LoginButton=page.getByTestId('login-submit')
+        this.registerAccountLink=page.getByTestId('register-link')
+    }
+
+    async typeEmail(email:string){
+       await this.emailInput.fill(email)
+    }
+    async typePasswor(password:string){
+       await this.passwordInput.fill(password)
+    }
+
+    async clickOnLoginButton(){
+       await this.LoginButton.click()
+    }
+
+    async clickOnRegisterAccountLink(){
+        await this.registerAccountLink.click()
+    }
+
+}

@@ -25,10 +25,10 @@ export class HomePage{
     async selectSort(value:string){
         await this.sortSelect.selectOption(value)
     }
-
-
-
-
-
-
+    async filterByHammerTool(){
+        await this.hammerToolCheckbox.check()
+    }
+    async filterByHandTools(){
+        await this.handToolsCheckbox.check()
+    }
 }
