@@ -28,8 +28,6 @@ test("Should list Pliers when searching by product name", async ({ page }) => {
 });
 
 test("should filter producs by name", async ({ page }) => {
-  page.on("request", (r) => console.log(r.url(), r.method()));
-  page.on("response", (r) => console.log(r.url(), r.status()));
   const homePage = new HomePage(page);
   await Promise.all([
     page.waitForResponse(
