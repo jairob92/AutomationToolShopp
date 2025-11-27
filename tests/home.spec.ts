@@ -1,6 +1,7 @@
 import { expect } from "@playwright/test";
 import { test } from "../fixtures/baseFixture";
-import { HomePage } from "../pages/homePage"; // <-- added import
+import { HomePage } from "../pages/homePage";
+import { Tool } from "../types/tool"; // <-- added import
 
 test("Check page title", async ({ page }) => {
   await expect(page).toHaveTitle("Practice Software Testing - Toolshop - v5.0");
@@ -54,9 +55,6 @@ test("should filter producs by name", async ({ page }) => {
   const totalPrice = tools
     .map((t) => parseFloat(t.price.replace(/[^0-9.]/g, "")))
     .reduce((sum, n) => sum + n, 0);
-
-  console.log(totalPrice);
-  console.log(tools);
   expect(
     tools.some((tool) =>
       tool.description.toLocaleLowerCase().includes("hammer")
@@ -65,7 +63,18 @@ test("should filter producs by name", async ({ page }) => {
   expect(totalPrice > 100);
 });
 
-interface Tool {
-  description: string;
-  price: string;
-}
+test("Products listed should be sorted by Name (A-Z)", async ({ page }) => {
+  const homePage = new HomePage(page);
+
+  await Promise.all([
+    page.waitForResponse(
+      (response) =>
+        response.url().includes("/products?page=0&sort=name,asc") &&
+        response.status() === 200
+    ),
+    await homePage.selectSort("name,asc"),
+  ]);
+  const productNames = await page.locator(".card-title").allInnerTexts();
+  const sortedProducts = [...productNames].sort((a, b) => a.localeCompare(b));
+  expect(productNames).toEqual(sortedProducts);
+});
