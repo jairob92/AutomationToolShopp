@@ -7,6 +7,7 @@ export class HomePage{
     private readonly sortSelect:Locator
     private readonly handToolsCheckbox:Locator
     private readonly hammerToolCheckbox:Locator
+    private readonly productCard:Locator
 
     constructor(page:Page){
         this.searchInput = page.getByTestId('search-query')
@@ -14,6 +15,7 @@ export class HomePage{
         this.sortSelect = page.getByTestId('sort')
         this.handToolsCheckbox= page.getByLabel(' Hand Tools')
         this.hammerToolCheckbox= page.getByLabel(' Hammer')
+        this.productCard = page.locator('.card')
     }
 
     async typeProduct(toolName:string){
@@ -30,5 +32,8 @@ export class HomePage{
     }
     async filterByHandTools(){
         await this.handToolsCheckbox.check()
+    }
+    async clickOnProduct(){
+        await this.productCard.click()
     }
 }
