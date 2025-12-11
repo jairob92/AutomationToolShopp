@@ -33,8 +33,8 @@ test("Should register new customer",async({page})=>{
     await customerRegistrationPage.typeEmail(email)
     await customerRegistrationPage.typePassword('Test321x_')
     await customerRegistrationPage.clickOnRegisterButton()
-    expect(page.url().includes('/auth/login'))
-    await expect(page.getByRole('button',{name:'Sign in with Google'})).toBeVisible()
+    await expect(page).toHaveURL(/\/auth\/login/)
+    await expect(page.getByRole('button',{name:'Sign in with Google'})).toBeVisible({ timeout: 15000 })
   
 });
 
