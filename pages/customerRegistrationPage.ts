@@ -63,7 +63,7 @@ export class CustomerRegistrationPage {
   async typeEmail(email:string){
     await this.emailInput.fill(email)
   }
-  async clickOnRegisterButton(phone:string){
+  async clickOnRegisterButton(){
     await this.registerButton.click()
   }
 

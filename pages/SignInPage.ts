@@ -17,7 +17,7 @@ export class SignInPage {
     async typeEmail(email:string){
        await this.emailInput.fill(email)
     }
-    async typePasswor(password:string){
+    async typePassword(password:string){
        await this.passwordInput.fill(password)
     }
 
