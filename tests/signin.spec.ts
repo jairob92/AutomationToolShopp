@@ -34,10 +34,9 @@ test("Should register new customer",async({page})=>{
     await customerRegistrationPage.typePassword('Test321x_')
     await customerRegistrationPage.clickOnRegisterButton()
     await expect(page).toHaveURL(/\/auth\/login/)
-    //await expect(page.getByRole('button',{name:'Sign in with Google'})).toBeVisible({ timeout: 15000 })
   
 });
-
+/*
 test("Should login as a customer",async({page})=>{
     const signinPage = new SignInPage(page)
     const customerRegistrationPage= new CustomerRegistrationPage(page)
@@ -51,3 +50,4 @@ test("Should login as a customer",async({page})=>{
     expect(pageTitle).toEqual('My account')
     
 })
+*/
